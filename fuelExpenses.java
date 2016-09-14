@@ -1,15 +1,18 @@
 /*
 Author: Edgar E. Rodriguez
-TA: Khandoker A Rahad
+TAs: Anthony M Ortiz Cepeda and Khandoker A Rahad
 Professor: Mahmud Hossain
-LMD: 8/30/16
+LMD: 09/06/16
+Goal: Read gas expenses from file. and calculate the following:
+• How many total gallons of gas were pumped into each vehicle?
+• What is the average amount of gas pumped during a fueling for each vehicle?
+• What is the average gas amount pumped during the first, second, third, …, nth fueling of the week? n is the number of times each vehicle was fueled.
+• What is the maximum amount of gas pumped into each vehicle in a week?
+• What is the minimum amount of gas pumped into each vehicle in a week?
 */
 
 import java.util.*;
 import java.io.*;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-
 
 public class fuelExpenses {
     //get gas records from file

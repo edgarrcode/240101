@@ -1,14 +1,20 @@
 /*
 Author: Edgar E. Rodriguez
-TA: Khandoker A Rahad
+TAs: Anthony M Ortiz Cepeda and Khandoker A Rahad
 Professor: Mahmud Hossain
-LMD: 8/30/16
+LMD: 09/06/16
+Goal: Read gas expenses from file, and calculate the following:
+• How many total gallons of gas were pumped into each vehicle?
+• What is the average amount of gas pumped during a fueling for each vehicle?
+• What is the average gas amount pumped during the first, second, third, …, and nth fueling of the week? n represents the maximum of the number of times each vehicle was fueled.
+• What is the maximum amount of gas pumped into each vehicle in a week?
+• What is the minimum amount of gas pumped into each vehicle in a week?
 */
 
 import java.util.*;
 import java.io.*;
 
-public class fuelExpensesJagged {
+public class fuelExpensesRagged {
     //get gas records from file
     public static double[][] readFile (String fileName) throws IOException {
         String line;
@@ -30,21 +36,16 @@ public class fuelExpensesJagged {
             String[] eachLineStringArray = buffer.readLine().split(" "); //"1", "2", "3" an array of strings per line
             double[] doubleArray = new double[eachLineStringArray.length]; //new double array, length of the string array
             for (int j = 0; j < eachLineStringArray.length; j++) {
-                doubleArray[j] = Double.parseDouble(eachLineStringArray[j]); //assign each string array item to double arrays as a double
+                try {
+                    doubleArray[j] = Double.parseDouble(eachLineStringArray[j]); //assign each string array item to double arrays as a double
+                } catch(NumberFormatException e) {
+                    System.err.println("The file should only contain numbers of double precision and spaces (example: \"1.0 2.3 1.3\").");
+                    System.exit(1);
+                }
             }
             gasRecords[i] = doubleArray; //assign 1d array to 2d array
         }
 
-
-        /*File gasFile = new File(fileName);
-        try {
-            Scanner scnr = new Scanner(gasFile);
-            if (scnr.hasNext()) {
-                System.out.print("hello");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }*/
         return gasRecords;
     }
 
@@ -70,10 +71,11 @@ public class fuelExpensesJagged {
 
     //average amount of gas pumped during a fueling for each vehicle
     public static double[] avgGasGallonsPerCar (double[][] gasRecords) {
+        int largestRowLength = largestRowLength(gasRecords); //get largest row length
         double[] avgGasGallonsPerCar = new double[gasRecords.length]; //create empty 1d double array
 
         for (int i = 0; i < gasRecords.length; i++) {
-            avgGasGallonsPerCar[i] = doubleArraySum(gasRecords[i]) / gasRecords[i].length; //assign avg of gas records to avgGasGallonsPerCar
+            avgGasGallonsPerCar[i] = doubleArraySum(gasRecords[i]) / gasRecords[i].length; //assign avg of gas records to avgGasGallonsPerCar. Average relative to each car and how many time it fueled. If you want to calculate average relative to the largest amount of fueling of all cars use the variable "largestRowLength"
         }
         return avgGasGallonsPerCar;
     }
@@ -94,15 +96,17 @@ public class fuelExpensesJagged {
         int largestRowLength = largestRowLength(gasRecords); //get largest row length
         double[] avgGasGallonPerWeek = new double[largestRowLength];//array to store averages per week
         double[] weekArrayTemp = new double[gasRecords.length]; //array to store temp col values
+        int carsPerWeek = 0;//temp int to count how many cars fueled gas per week
         for (int i = 0; i < largestRowLength; i++) {
+            carsPerWeek = 0; //reset temp week length to 0
             for (int j = 0; j < gasRecords.length; j++) {
                 weekArrayTemp[j] = 0; //reset temp to 0
                 if (gasRecords[j].length > i) {
                     weekArrayTemp[j] = gasRecords[j][i]; // creating temporary 1d double array
-
+                    carsPerWeek++;
                 }
             }
-            avgGasGallonPerWeek[i] = doubleArraySum(weekArrayTemp) / gasRecords.length; //adding weekly values to array. Result of dividing column sum divided by weeks amount
+            avgGasGallonPerWeek[i] = doubleArraySum(weekArrayTemp) / carsPerWeek; //adding weekly values to array. Result of dividing column sum divided by sum of cars that fueled gas that week (not counting cars that didnt fueled gas that week -- to consider all cars all week suse "gasRecords.length" instead of "carsPerWeek")
         }
 
         return avgGasGallonPerWeek;
@@ -152,6 +156,15 @@ public class fuelExpensesJagged {
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
             System.exit(1);
+        }
+
+        //check if file is not empty
+        if (gasRecords.length == 0) {
+            try {
+                throw new IOException("File is empty.");
+            } catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         //total gallons of gas pumped into each vehicle

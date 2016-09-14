@@ -1,0 +1,78 @@
+---
+fuelExpenses
+[done] operation
+[done] empty file
+[done] weird character
+[done] ragged array
+[done] file not found
+
+Edgars-MacBook-Pro:code edgarrodriguez$ java fuelExpenses
+What is the name of the file?
+g.txt
+Car Number 1 pumped a total of 38.0 gallons.
+Car Number 2 pumped a total of 25.15 gallons.
+Car Number 3 pumped a total of 14.5 gallons.
+Car Number 4 pumped a total of 33.0 gallons.
+Car Number 5 pumped a total of 21.0 gallons.
+Car Number 1 pumped an average of 12.666666666666666 per fueling.
+Car Number 2 pumped an average of 8.383333333333333 per fueling.
+Car Number 3 pumped an average of 4.833333333333333 per fueling.
+Car Number 4 pumped an average of 11.0 per fueling.
+Car Number 5 pumped an average of 7.0 per fueling.
+Week 1 average is 7.7
+Week 2 average is 8.190000000000001
+Week 3 average is 10.440000000000001
+The maximum amount of gas pumped by car 1 in a week was 20.0
+The maximum amount of gas pumped by car 2 in a week was 12.2
+The maximum amount of gas pumped by car 3 in a week was 8.0
+The maximum amount of gas pumped by car 4 in a week was 18.0
+The maximum amount of gas pumped by car 5 in a week was 10.0
+The minimum amount of gas pumped by car 1 in a week was 8.0
+The minimum amount of gas pumped by car 2 in a week was 4.5
+The minimum amount of gas pumped by car 3 in a week was 2.5
+The minimum amount of gas pumped by car 4 in a week was 0.0
+The minimum amount of gas pumped by car 5 in a week was 5.0
+
+
+
+---
+fuelExpensesRagged
+[done] operation
+[done] empty file
+[done] weird character
+[done] regular
+[done] file not found
+
+Edgars-MacBook-Pro:code edgarrodriguez$ java fuelExpensesRagged
+What is the name of the file?
+r.txt
+Car Number 1 pumped a total of 30.0 gallons.
+Car Number 2 pumped a total of 32.95 gallons.
+Car Number 3 pumped a total of 8.0 gallons.
+Car Number 4 pumped a total of 57.4 gallons.
+Car Number 5 pumped a total of 38.5 gallons.
+Car Number 6 pumped a total of 50.45 gallons.
+Car Number 1 pumped an average of 15.0 per fueling.
+Car Number 2 pumped an average of 8.2375 per fueling.
+Car Number 3 pumped an average of 8.0 per fueling.
+Car Number 4 pumped an average of 14.35 per fueling.
+Car Number 5 pumped an average of 12.833333333333334 per fueling.
+Car Number 6 pumped an average of 10.09 per fueling.
+Week 1 average is 8.391666666666667
+Week 2 average is 11.37
+Week 3 average is 14.375
+Week 4 average is 12.366666666666667
+Week 5 average is 15.5
+The maximum amount of gas pumped by car 1 in a week was 20.0
+The maximum amount of gas pumped by car 2 in a week was 12.0
+The maximum amount of gas pumped by car 3 in a week was 8.0
+The maximum amount of gas pumped by car 4 in a week was 20.1
+The maximum amount of gas pumped by car 5 in a week was 17.5
+The maximum amount of gas pumped by car 6 in a week was 15.5
+The minimum amount of gas pumped by car 1 in a week was 10.0
+The minimum amount of gas pumped by car 2 in a week was 4.5
+The minimum amount of gas pumped by car 3 in a week was 8.0
+The minimum amount of gas pumped by car 4 in a week was 4.1
+The minimum amount of gas pumped by car 5 in a week was 7.0
+The minimum amount of gas pumped by car 6 in a week was 6.75
+
